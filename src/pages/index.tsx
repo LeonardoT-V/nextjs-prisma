@@ -74,7 +74,7 @@ const Home: NextPage = () => {
         <title>Railway NextJS Prisma</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <h1>Hola mundo</h1>
       <header className={styles.header}>
         <h1 className={styles.title}>Todos</h1>
         <h2 className={styles.desc}>
