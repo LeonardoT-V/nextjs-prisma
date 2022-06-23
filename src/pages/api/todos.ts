@@ -9,6 +9,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const todos = await prisma.todo.findMany({
       orderBy: { createdAt: "desc" },
     });
+
+
     res.json(todos);
   } else if (req.method === "POST") {
     // create todo
@@ -29,10 +31,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.json(todo);
   } else if (req.method === "DELETE") {
+
     // delete todo
     const id = req.query.todoId as string;
     await prisma.todo.delete({ where: { id } });
 
     res.json({ status: "ok" });
+
   }
 };

@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { createTodo, deleteTodo, toggleTodo, useTodos } from "../api";
 import styles from "../styles/Home.module.css";
@@ -82,6 +83,9 @@ const Home: NextPage = () => {
           <a href="https://railway.app">Railway</a>
         </h2>
       </header>
+      <Link href="/login">
+        <a>Login</a>
+      </Link>
 
       <main className={styles.main}>
         <AddTodoInput />
