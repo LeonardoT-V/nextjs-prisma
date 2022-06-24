@@ -14,6 +14,6 @@ export default async(req, res) => {
         email: user.email
       }
     })
-    res.status(200).json(usuario)
+    res.status(200).json({data:usuario})
   }
 }

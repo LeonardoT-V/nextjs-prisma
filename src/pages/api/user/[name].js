@@ -22,11 +22,12 @@ const logginAccount = async(req, res) => {
       email: query.name
     }
   })
+  res.setHeader("Allow", "POST");
 
   //Validaciones
   // si el correo no se encuentra en la base de datos
   if( userCreado === null ) {
-    res.status(400).json({msg: "No existe este correo"})
+    res.status(400).json({msg: "No existe este correo", error: true})
     return
   }
   // comparar las contraseñas (entre las que envia el cliente y la base de datos)
@@ -37,6 +38,6 @@ const logginAccount = async(req, res) => {
     }
     res.status(200).json({data: enviarDato})
   } else {
-    res.status(400).json({msg: "Ingrese la contraseña correctamente"})
+    res.status(400).json({msg: "Ingrese la contraseña correctamente", error: true})
   }
 }
