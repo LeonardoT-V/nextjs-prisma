@@ -3,6 +3,7 @@ import NLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, {useState} from 'react'
 import Layout from '../../../components/layout/Layout'
+import { insertarUsuarioLocal } from '../../../utils/localStorage'
 import { createUser } from '../../../utils/usuarioAPI'
 
 const index = () => {
@@ -33,7 +34,7 @@ const index = () => {
       username: data.username,
       email: data.email
     }
-    localStorage.setItem("usuario", JSON.stringify(success));
+    insertarUsuarioLocal(success)
     router.push('/login')
   }
 
