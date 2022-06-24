@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "yarn migrate:deploy && next build",
-    "start": "next start --port ${PORT-3000} -H 192.168.100.146",
+    "start": "next start --port ${PORT-3000}",
     "migrate:dev": "prisma migrate dev --preview-feature",
     "migrate:deploy": "prisma migrate deploy --preview-feature",
     "migrate:status": "prisma migrate status --preview-feature",
