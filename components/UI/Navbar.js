@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, Button, Toolbar, Typography } from '@mui/material'
+import { AppBar,MenuItem, Menu, Avatar, Box, Button, Toolbar, Typography } from '@mui/material'
 import { lightBlue } from '@mui/material/colors'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,14 +10,32 @@ const Navbar = () => {
   const router = useRouter()
 
   const [userData, setUserData] = useState({})
-  useEffect(() => {
-    setUserData(existeUsuarioGuardado())
-  }, [])
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+      setAnchorEl(null);
+  };
 
   const closeSesion = () => {
   	cerrarSesionLocal()
+    console.log("push");
+    location.reload()
     router.push('/')
   }
+
+  const goTo = (path) => {
+    router.push(`/${path}`)
+  }
+
+  useEffect(() => {
+    setUserData(existeUsuarioGuardado())
+
+    console.log("cargado");
+  }, [setUserData])
 
   return (
     <AppBar position='static' color='inherit' elevation={1}>
@@ -26,10 +44,6 @@ const Navbar = () => {
           Examen S.A
         </Typography>
 
-        {/* <Box sx={{flexGrow: 1}}>
-          <Button variant='contained' sx={{mx:2}}>casa</Button>
-          <Button variant='contained'>see</Button>
-        </Box> */}
       {
         userData
         ?
@@ -37,8 +51,23 @@ const Navbar = () => {
           <Typography variant='body1' sx={{mr:2}}>
             {userData.email}
           </Typography>
-          <Avatar alt={userData.username} sx={{background: lightBlue[200]}} />
-          <Button color='error' onClick={closeSesion} >salir</Button>
+          <Avatar alt={userData.username} sx={{background: lightBlue[200]}}
+            aria-controls="simple-menu" aria-haspopup="true"
+            onClick={handleClick}
+          />
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            sx={{mt:3}}
+          >
+              <MenuItem onClick={() => goTo('registro')}>Crear encuestas</MenuItem>
+              <MenuItem onClick={() => goTo('login')}>Mis encuestas</MenuItem>
+              <MenuItem onClick={() => goTo('')}>Ver Encuestas</MenuItem>
+              <MenuItem onClick={closeSesion}>Cerrar Sesion</MenuItem>
+          </Menu>
         </Box>
         :
         <Box>
@@ -51,7 +80,6 @@ const Navbar = () => {
         </Box>
 
       }
-
       </Toolbar>
     </AppBar>
   )

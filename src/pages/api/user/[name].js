@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
-
+import bcrypt from 'bcrypt'
 export default async(req, res) => {
   // el method trae si es POST, PUT, DELETE, GET
   const { method } = req
@@ -30,11 +30,15 @@ const logginAccount = async(req, res) => {
     res.status(400).json({msg: "No existe este correo", error: true})
     return
   }
+
+  const cryptedPass = bcrypt.compareSync( body.password ,userCreado.password)
+
   // comparar las contraseñas (entre las que envia el cliente y la base de datos)
-  if( body.password === userCreado.password ) {
+  if( bcrypt.compareSync( body.password ,userCreado.password) ) {
     const enviarDato = {
       username: userCreado.username,
       email: userCreado.email,
+      id: userCreado.id
     }
     res.status(200).json({data: enviarDato})
   } else {

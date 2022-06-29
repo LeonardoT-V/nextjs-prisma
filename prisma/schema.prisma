@@ -3,8 +3,8 @@
 
 datasource db {
   provider = "postgresql"
-  //url      = env("DATABASE_URL")
-  url = "postgresql://postgres:gD5H5GjYMBiJsPxzX1LT@containers-us-west-52.railway.app:7013/railway"
+  url      = env("DATABASE_URL")
+  //url = "postgresql://postgres:gD5H5GjYMBiJsPxzX1LT@containers-us-west-52.railway.app:7013/railway"
 
 }
 

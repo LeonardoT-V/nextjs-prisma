@@ -27,17 +27,20 @@ const index = () => {
   const loginAccount = async(e) => {
   	e.preventDefault()
     const {data} = await loginUser(formulario)
-
+    const success =  {
+      username: data.username,
+      email: data.email,
+      id: data.id,
+    }
     if(data.error === true){
       setError({msg: data.msg, visible: true})
       return
     } else {
       setError({msg: '', visible: false})
-      insertarUsuarioLocal(data)
+      insertarUsuarioLocal(success)
       router.push('/registro')
     }
   }
-
 
   return (
     <Layout title="Login">
@@ -48,9 +51,9 @@ const index = () => {
 
       <form onSubmit={loginAccount}>
         <TextField label='Correo electronico' id='txt_email' type='email' fullWidth margin='normal'
-          defaultValue={formulario.email} name='email' onChange={asignarDatos} />
+          defaultValue={formulario.email} name='email' onChange={asignarDatos} required/>
         <TextField label='Contraseña' id='txt_password' type='password' fullWidth margin='dense'
-          defaultValue={formulario.password} name='password' onChange={asignarDatos}/>
+          defaultValue={formulario.password} name='password' onChange={asignarDatos} required/>
         <Button fullWidth variant='contained' size='large' sx={{mt:3}} type='submit' >Ingresar</Button>
       </form>
 
@@ -67,6 +70,7 @@ const index = () => {
       </Typography>
 
       </Paper>
+
     </Layout>
   )
 }

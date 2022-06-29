@@ -32,7 +32,8 @@ const index = () => {
     const {data} = await createUser(formulario);
     const success =  {
       username: data.username,
-      email: data.email
+      email: data.email,
+      id: data.id,
     }
     insertarUsuarioLocal(success)
     router.push('/login')
@@ -47,11 +48,11 @@ const index = () => {
 
       <form onSubmit={registerAccount}>
         <TextField label='Correo electronico' id='txt_email' type='email' fullWidth margin='normal'
-          defaultValue={formulario.email} name='email' onChange={asignarDatos} />
+          defaultValue={formulario.email} name='email' onChange={asignarDatos} required/>
         <TextField label='Nombre de usuario' id='txt_username' type='text' fullWidth margin='dense'
-          defaultValue={formulario.username} name='username' onChange={asignarDatos}/>
+          defaultValue={formulario.username} name='username' onChange={asignarDatos} required/>
         <TextField label='Contraseña' id='txt_password' type='password' fullWidth margin='dense'
-          defaultValue={formulario.password} name='password' onChange={asignarDatos}/>
+          defaultValue={formulario.password} name='password' onChange={asignarDatos} required/>
         <Button fullWidth variant='contained' size='large' sx={{mt:3}} type='submit' >Registrate</Button>
       </form>
 
