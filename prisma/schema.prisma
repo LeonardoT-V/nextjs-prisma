@@ -3,9 +3,9 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  //url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:q1234@localhost:5432/encuesta"
   //url = "postgresql://postgres:gD5H5GjYMBiJsPxzX1LT@containers-us-west-52.railway.app:7013/railway"
-
 }
 
 generator client {
@@ -25,4 +25,16 @@ model Usuario {
   password  String
   createdAt DateTime  @default(now())
   email     String    @unique
+  encuesta  Encuesta []
+}
+
+model Encuesta {
+  id        Int       @id @default(autoincrement()) @unique
+  usuario   Usuario   @relation(fields: [usuarioId], references: [id])
+  usuarioId Int
+  titulo    String
+  descripcion String
+  publicado DateTime  @default(now())
+  estado    Boolean   @default(false)
+  auth      Boolean
 }

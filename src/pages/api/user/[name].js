@@ -16,32 +16,35 @@ export default async(req, res) => {
 }
 
 const logginAccount = async(req, res) => {
-  const { query, body } = req
-  const userCreado = await prisma.usuario.findFirst({
-    where: {
-      email: query.name
+  try {
+    const { query, body } = req
+    const userCreado = await prisma.usuario.findFirst({
+      where: {
+        email: query.name
+      }
+    })
+    res.setHeader("Allow", "POST");
+
+    //Validaciones
+    // si el correo no se encuentra en la base de datos
+    if( userCreado === null ) {
+      res.status(400).json({msg: "No existe este correo", error: true})
+      return
     }
-  })
-  res.setHeader("Allow", "POST");
 
-  //Validaciones
-  // si el correo no se encuentra en la base de datos
-  if( userCreado === null ) {
-    res.status(400).json({msg: "No existe este correo", error: true})
-    return
-  }
-
-  const cryptedPass = bcrypt.compareSync( body.password ,userCreado.password)
-
-  // comparar las contraseñas (entre las que envia el cliente y la base de datos)
-  if( bcrypt.compareSync( body.password ,userCreado.password) ) {
-    const enviarDato = {
-      username: userCreado.username,
-      email: userCreado.email,
-      id: userCreado.id
+    // comparar las contraseñas (entre las que envia el cliente y la base de datos)
+    if( bcrypt.compareSync( body.password ,userCreado.password) ) {
+      const enviarDato = {
+        username: userCreado.username,
+        email: userCreado.email,
+        id: userCreado.id
+      }
+      res.status(200).json({data: enviarDato})
+    } else {
+      res.status(400).json({msg: "Ingrese la contraseña correctamente", error: true})
     }
-    res.status(200).json({data: enviarDato})
-  } else {
-    res.status(400).json({msg: "Ingrese la contraseña correctamente", error: true})
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({msg: "Ha ocurrido un error", error: true})
   }
 }

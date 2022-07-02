@@ -2,15 +2,16 @@ import { AppBar,MenuItem, Menu, Avatar, Box, Button, Toolbar, Typography } from 
 import { lightBlue } from '@mui/material/colors'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { cerrarSesionLocal, existeUsuarioGuardado } from '../../utils/localStorage'
-
+import Favicon from '../../public/favicon.ico'
+import Image from 'next/image'
 const Navbar = () => {
 
   const router = useRouter()
 
   const [userData, setUserData] = useState({})
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -40,17 +41,17 @@ const Navbar = () => {
   return (
     <AppBar position='static' color='inherit' elevation={1}>
       <Toolbar>
-        <Typography  component="div" sx={{flexGrow: 1}} >
-          Examen S.A
-        </Typography>
+        <Box sx={{flexGrow: 1, display: 'flex', height: '100%'}}  >
+          <Image src={Favicon} />
+          <Typography  component="div"  >
+            TCM
+          </Typography>
+        </Box>
 
       {
         userData
         ?
         <Box sx={{display:'flex', alignItems: 'center'}}>
-          <Typography variant='body1' sx={{mr:2}}>
-            {userData.email}
-          </Typography>
           <Avatar alt={userData.username} sx={{background: lightBlue[200]}}
             aria-controls="simple-menu" aria-haspopup="true"
             onClick={handleClick}
@@ -63,7 +64,7 @@ const Navbar = () => {
             onClose={handleClose}
             sx={{mt:3}}
           >
-              <MenuItem onClick={() => goTo('registro')}>Crear encuestas</MenuItem>
+              <MenuItem onClick={() => goTo('crear-encuesta')}>Crear encuestas</MenuItem>
               <MenuItem onClick={() => goTo('login')}>Mis encuestas</MenuItem>
               <MenuItem onClick={() => goTo('')}>Ver Encuestas</MenuItem>
               <MenuItem onClick={closeSesion}>Cerrar Sesion</MenuItem>
@@ -78,7 +79,6 @@ const Navbar = () => {
             <Button variant='contained'>Registro</Button>
           </Link>
         </Box>
-
       }
       </Toolbar>
     </AppBar>
