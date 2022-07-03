@@ -14,7 +14,7 @@ export default async(req, res) => {
       }
     })
 
-    res.status(200).json({encuesta})
+    res.status(200).json({data: encuesta})
   } else if ( req.method === "GET" ) {
     res.json({hola: "prueba api"})
   }

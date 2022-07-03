@@ -3,20 +3,13 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
-  //url      = "postgresql://postgres:q1234@localhost:5432/encuesta"
+  //url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:q1234@localhost:5432/encuesta"
   //url = "postgresql://postgres:gD5H5GjYMBiJsPxzX1LT@containers-us-west-52.railway.app:7013/railway"
 }
 
 generator client {
   provider = "prisma-client-js"
-}
-
-model Todo {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
-  text      String
-  completed Boolean
 }
 
 model Usuario {
@@ -25,7 +18,7 @@ model Usuario {
   password  String
   createdAt DateTime  @default(now())
   email     String    @unique
-  encuesta  Encuesta []
+  encuesta  Encuesta  []
 }
 
 model Encuesta {
@@ -37,4 +30,14 @@ model Encuesta {
   publicado DateTime  @default(now())
   estado    Boolean   @default(false)
   auth      Boolean
+  pregunta  Pregunta  []
+}
+
+model Pregunta {
+  id        Int       @id @default(autoincrement()) @unique
+  encuesta  Encuesta  @relation(fields: [encuestaId], references: [id])
+  encuestaId  Int
+  titulo    String
+  opcion    String[]
+
 }
