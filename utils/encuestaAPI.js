@@ -1,5 +1,4 @@
 import client from './axiosClient'
-import { usuarioIdLocal } from './localStorage';
 
 export const crearEncuesta = async(formulario) => {
   const { titulo, usuario, descripcion, auth } = formulario
@@ -18,6 +17,16 @@ export const crearEncuesta = async(formulario) => {
   }
 }
 
+export const todasLasEncuesta = async() => {
+  try {
+    const { data } = await client.get('/api/encuesta')
+    return data
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const mostrarMisEncuesta = async(usuario) => {
   try {
     const {data} = await client.get(`/api/encuesta/${usuario}`)
@@ -27,4 +36,26 @@ export const mostrarMisEncuesta = async(usuario) => {
     return {data: error.response.data }
   }
 
+}
+
+export const eliminarUnaEncuesta = async(id) => {
+  try {
+    const { data } = await client.delete(`/api/encuesta/${id}`)
+    return data
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const publicarUnaEncuesta = async(id) => {
+  try {
+    const { data } = await client.put('/api/encuesta/publicar', {
+      id,
+      estado: true
+    })
+
+    return data
+  } catch (error) {
+    console.log(error);
+  }
 }

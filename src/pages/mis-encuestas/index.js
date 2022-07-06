@@ -7,31 +7,30 @@ import { usuarioIdLocal } from '../../../utils/localStorage'
 
 const index = () => {
 
-  const [encuesta, setEncuesta] = useState({data: [], carga: true})
+  const [encuesta, setEncuesta] = useState([])
+  const [actualizar, setActualizar] = useState(true)
 
   useEffect(() => {
     const listarEncuestas = async() => {
 
       const {data} = await mostrarMisEncuesta(usuarioIdLocal())
-      if( encuesta.carga ) {
-        setEncuesta({
-          ...encuesta,
-          data,
-          carga: false
-        })
+      if( actualizar ) {
+        setEncuesta(data)
+        console.log("paso por aqui");
+        setActualizar(false)
       }
     }
     listarEncuestas()
-  }, [ ])
+  }, [ actualizar ])
 
   return (
     <Layout title='mis encuestas'>
 
       <Grid container spacing={4} sx={{justifyContent: 'space-evenly', mb:'32px'}} >
 
-        { encuesta.data.map((item) => (
+        { encuesta.map((item) => (
           <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <ItemEncuesta encuesta={item}/>
+            <ItemEncuesta encuesta={item} setActualizar={setActualizar}  />
           </Grid>
         ))}
 

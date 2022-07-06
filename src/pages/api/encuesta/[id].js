@@ -11,9 +11,47 @@ export default async(req, res) => {
       },
       include:{
         pregunta: true
+      },
+      orderBy: {
+        publicado: 'desc'
       }
     })
 
     return res.status(200).json({data: encuesta})
+  }
+  else if ( req.method === 'DELETE' ) {
+    const { id } = req.query
+
+    await prisma.encuesta.delete({
+      where:{
+        id: parseInt(id)
+      }
+    })
+
+    res.json({msg: 'Borrado correctamente'})
+  }
+
+  else if ( req.method === 'PUT' ) {
+    const { id } = req.query
+    const { estado, titulo, descripcion, auth } = req.body
+
+    const encuesta = await prisma.encuesta.update({
+      where: {
+        id: parseInt(id)
+      },
+      data: {
+        titulo,
+        estado,
+        descripcion,
+        auth
+      }
+    })
+
+    res.json()
+
+
+
+
+
   }
 }

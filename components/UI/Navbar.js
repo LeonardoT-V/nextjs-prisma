@@ -65,8 +65,8 @@ const Navbar = () => {
             sx={{mt:3}}
           >
               <MenuItem onClick={() => goTo('crear-encuesta')}>Crear encuestas</MenuItem>
-              <MenuItem onClick={() => goTo('login')}>Mis encuestas</MenuItem>
-              <MenuItem onClick={() => goTo('')}>Ver Encuestas</MenuItem>
+              <MenuItem onClick={() => goTo('mis-encuestas')}>Mis encuestas</MenuItem>
+              <MenuItem onClick={() => goTo('encuesta-comunidad')}>Encuestas comunidad</MenuItem>
               <MenuItem onClick={closeSesion}>Cerrar Sesion</MenuItem>
           </Menu>
         </Box>

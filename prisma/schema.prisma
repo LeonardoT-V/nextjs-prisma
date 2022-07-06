@@ -39,5 +39,4 @@ model Pregunta {
   encuestaId  Int
   titulo    String
   opcion    String[]
-
 }
