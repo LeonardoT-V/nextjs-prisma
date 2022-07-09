@@ -1,9 +1,9 @@
 import { Button, Paper, TextField, Typography, Link} from '@mui/material'
 import NLink from 'next/link'
 import { useRouter } from 'next/router'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Layout from '../../../components/layout/Layout'
-import { insertarUsuarioLocal } from '../../../utils/localStorage'
+import { existeUsuarioGuardado, insertarUsuarioLocal } from '../../../utils/localStorage'
 import { loginUser } from '../../../utils/usuarioAPI'
 
 const index = () => {
@@ -12,6 +12,15 @@ const index = () => {
     email: '',
     password: ''
   })
+
+
+
+  useEffect(() => {
+    if( existeUsuarioGuardado) {
+      router.push('/mis-encuestas')
+    }
+  }, [])
+
 
   const [error, setError] = useState({
     msg: '',

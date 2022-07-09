@@ -1,6 +1,6 @@
 import { Send } from '@mui/icons-material'
 import { Box, Button, colors, Divider, Paper, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../../components/layout/Layout'
 import ItemResponder from '../../../components/responder/ItemResponder'
 import { existeUsuarioGuardado } from '../../../utils/localStorage'
@@ -11,13 +11,23 @@ const index = ({data}) => {
   const [encuesta, setEncuesta] = useState(data)
   const [respuesta, setRespuesta] = useState({})
   console.log(respuesta);
-  if( !existeUsuarioGuardado ){
-    return (
-      <Layout>
 
-      </Layout>
-    )
-  }
+
+
+
+  useEffect(() => {
+    function Comprobar() {
+      if( !existeUsuarioGuardado ){
+        console.log("no existe");
+        return (
+          <Layout>
+            <h1>Cuenta necesaria</h1>
+          </Layout>
+        )
+      }
+    }
+    Comprobar()
+  }, [])
 
 
   return (

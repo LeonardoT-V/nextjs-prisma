@@ -1,4 +1,4 @@
-import { Container } from '@mui/material'
+import { Box, colors, Container, Typography } from '@mui/material'
 import Head from 'next/head'
 import React from 'react'
 import Navbar from '../UI/Navbar'
@@ -15,6 +15,7 @@ const Layout = ({children, title}) => {
       <Container sx={{pt: 3}}>
         {children}
       </Container>
+
 
     </>
 

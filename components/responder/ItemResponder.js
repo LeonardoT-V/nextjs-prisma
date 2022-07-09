@@ -23,7 +23,7 @@ const ItemResponder = ({pregunta, setRespuesta, respuesta, index}) => {
             <FormControlLabel value={item} control={<Radio />} label={item} key={item} />
             ))}
         </RadioGroup>
-        : <TextField label='Ingrese su respuesta' size='small' fullWidth
+        : <TextField label='Ingrese su respuesta' required size='small' fullWidth
           name={pregunta.titulo} onChange={(e)=> seleccionarOpcion(e, pregunta.id)}
           />
       }

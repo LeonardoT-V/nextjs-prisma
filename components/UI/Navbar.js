@@ -42,10 +42,15 @@ const Navbar = () => {
     <AppBar position='static' color='inherit' elevation={1}>
       <Toolbar>
         <Box sx={{flexGrow: 1, display: 'flex', height: '100%'}}  >
+        <Link href='/'>
           <Image src={Favicon} />
-          <Typography  component="div"  >
+        </Link>
+        <Link href='/'>
+        <Typography  component="div"  >
             TCM
           </Typography>
+        </Link>
+
         </Box>
 
       {
