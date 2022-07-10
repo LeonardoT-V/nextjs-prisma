@@ -10,6 +10,9 @@ const Layout = ({children, title}) => {
       <Head>
         <title>{title || 'TCM'}</title>
         <link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
+        <meta property="og:title" content='TCM Encuestas digitales'  />
+        <meta property="og:description" content='Crear tus encuestas y compartelas con todos' />
+        <meta property="og:image" content={`${origin}/static/favicon.ico`} />
       </Head>
       <Navbar />
       <Container sx={{pt: 3}}>
