@@ -36,7 +36,7 @@ const index = () => {
       id: data.id,
     }
     insertarUsuarioLocal(success)
-    router.push('/login')
+    router.push('/')
   }
 
   return (

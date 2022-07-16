@@ -38,7 +38,7 @@ const index = () => {
     } else {
       setError({msg: '', visible: false})
       insertarUsuarioLocal(success)
-      router.push('/registro')
+      router.push('/')
     }
   }
 
