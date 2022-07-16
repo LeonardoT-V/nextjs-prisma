@@ -13,15 +13,6 @@ const index = () => {
     password: ''
   })
 
-
-
-  useEffect(() => {
-    if( existeUsuarioGuardado) {
-      router.push('/mis-encuestas')
-    }
-  }, [])
-
-
   const [error, setError] = useState({
     msg: '',
     visible: false
