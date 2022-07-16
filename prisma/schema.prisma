@@ -39,4 +39,19 @@ model Pregunta {
   encuestaId  Int
   titulo    String
   opcion    String[]
+  respuesta Respuesta []
+}
+
+
+model Respuesta {
+  id        Int       @id @default(autoincrement()) @unique
+  pregunta  Pregunta  @relation(fields: [preguntaId], references: [id])
+  preguntaId  Int
+  valor     String
+}
+
+model Contactanos {
+  id        Int       @id @default(autoincrement()) @unique
+  email     String
+  mensaje   String
 }

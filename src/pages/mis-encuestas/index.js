@@ -9,7 +9,7 @@ const index = () => {
 
   const [encuesta, setEncuesta] = useState([])
   const [actualizar, setActualizar] = useState(true)
-
+  console.log(encuesta);
   useEffect(() => {
     const listarEncuestas = async() => {
 

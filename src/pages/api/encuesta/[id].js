@@ -10,7 +10,11 @@ export default async(req, res) => {
         usuarioId: parseInt(id)
       },
       include:{
-        pregunta: true
+        pregunta: {
+          include: {
+            respuesta: true
+          }
+        }
       },
       orderBy: {
         publicado: 'desc'

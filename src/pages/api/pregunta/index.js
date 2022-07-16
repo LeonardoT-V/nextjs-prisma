@@ -8,10 +8,10 @@ export default async(req, res) => {
       data: {
         titulo,
         opcion,
-        encuestaId
+        encuestaId: parseInt(encuestaId)
       }
     })
-    res.status(200).json({data: pregunta})
+    res.status(200).json({data: pregunta, msg:'Agregado correctamente'})
   }
   else if ( req.method === "GET" ) {
     const { id } = req.body

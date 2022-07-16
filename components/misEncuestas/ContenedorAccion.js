@@ -25,9 +25,15 @@ const ContenedorAccion = ({estado, id, setActualizar}) => {
     setActualizar(true)
     enqueueSnackbar(msg, {variant: 'info'})
   }
+  const resultadosEncuesta = (id) => {
+    router.push(`/resultados/${id}`)
+  }
+
 
   const compartirEnlace =(id) => {
     navigator.clipboard.writeText(`${window.location.origin}/responder/${id}`)
+    enqueueSnackbar('Enlace copiado', {variant: 'default'})
+
   }
 
 	return (
@@ -35,7 +41,7 @@ const ContenedorAccion = ({estado, id, setActualizar}) => {
       <IconButton onClick={() => borrarEncuesta(id)}  color='error'> <DeleteForever/> </IconButton>
       { estado
       ? <>
-        <IconButton color='warning'> <PieChartOutline/> </IconButton>
+        <IconButton onClick={() => resultadosEncuesta(id)} color='warning'> <PieChartOutline/> </IconButton>
         <IconButton onClick={() => compartirEnlace(id)} > <Share/> </IconButton>
       </>
       : <>

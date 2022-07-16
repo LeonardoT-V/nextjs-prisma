@@ -1,13 +1,15 @@
 import { Send } from '@mui/icons-material'
 import { Box, Button, colors, Divider, Paper, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Layout from '../../../components/layout/Layout'
 import ItemResponder from '../../../components/responder/ItemResponder'
 import { existeUsuarioGuardado } from '../../../utils/localStorage'
-import { obtenerEncuestaPregunta } from '../../../utils/respuestaAPI'
+import { enviarRespuesta, obtenerEncuestaPregunta } from '../../../utils/respuestaAPI'
 
 const index = ({data}) => {
 
+  const router = useRouter()
   const [encuesta, setEncuesta] = useState(data)
   const [respuesta, setRespuesta] = useState({})
   console.log(respuesta);
@@ -28,6 +30,12 @@ const index = ({data}) => {
     }
     Comprobar()
   }, [])
+
+
+  const enviarResultadosNube = async() => {
+    await enviarRespuesta(respuesta)
+    router.push('/encuesta-comunidad')
+  }
 
 
   return (
@@ -53,13 +61,10 @@ const index = ({data}) => {
           ))}
 
           <Divider>
-            <Button variant='contained' size='large' fullWidth endIcon={<Send />} > Enviar Respuestas </Button>
+            <Button onClick={enviarResultadosNube} variant='contained' size='large' fullWidth endIcon={<Send />} > Enviar Respuestas </Button>
           </Divider>
 
         </Box>
-
-
-
 
       </Paper>
     </Layout>

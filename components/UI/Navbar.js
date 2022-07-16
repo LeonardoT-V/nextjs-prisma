@@ -4,8 +4,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { cerrarSesionLocal, existeUsuarioGuardado } from '../../utils/localStorage'
-import Favicon from '../../public/favicon.ico'
+import Favicon from '../../public/static/tcm.png'
 import Image from 'next/image'
+import { Group, LibraryBooks, Logout, PlaylistAdd } from '@mui/icons-material'
 const Navbar = () => {
 
   const router = useRouter()
@@ -43,14 +44,8 @@ const Navbar = () => {
       <Toolbar>
         <Box sx={{flexGrow: 1, display: 'flex', height: '100%'}}  >
         <Link href='/'>
-          <Image src={Favicon} />
+          <Image src={Favicon} height='60px' width='60px' />
         </Link>
-        <Link href='/'>
-        <Typography  component="div"  >
-            TCM
-          </Typography>
-        </Link>
-
         </Box>
 
       {
@@ -69,10 +64,14 @@ const Navbar = () => {
             onClose={handleClose}
             sx={{mt:3}}
           >
-              <MenuItem onClick={() => goTo('crear-encuesta')}>Crear encuestas</MenuItem>
-              <MenuItem onClick={() => goTo('mis-encuestas')}>Mis encuestas</MenuItem>
-              <MenuItem onClick={() => goTo('encuesta-comunidad')}>Encuestas comunidad</MenuItem>
-              <MenuItem onClick={closeSesion}>Cerrar Sesion</MenuItem>
+              <MenuItem  onClick={() => goTo('crear-encuesta')}>
+                <Box alignItems='center' display='flex'> <PlaylistAdd sx={{mr:'10px', color:'#928374'}}/>Crear encuestas</Box> </MenuItem>
+              <MenuItem onClick={() => goTo('mis-encuestas')}>
+              <Box alignItems='center' display='flex'> <LibraryBooks sx={{mr:'10px', color:'#928374'}}/>Mis encuestas</Box></MenuItem>
+              <MenuItem onClick={() => goTo('encuesta-comunidad')}>
+              <Box alignItems='center' display='flex'> <Group  sx={{mr:'10px', color:'#928374'}}/>Encuestas comunidad</Box></MenuItem>
+              <MenuItem onClick={closeSesion}>
+              <Box alignItems='center' display='flex'> <Logout sx={{mr:'10px', color:'#928374'}}/>Cerrar Sesion</Box></MenuItem>
           </Menu>
         </Box>
         :
