@@ -6,9 +6,9 @@ import GraficoItem from '../../../components/resultados/GraficoItem'
 const index = ({data}) => {
   const [pregunta, setPregunta] = useState(data)
   return (
-    <Layout>
-      {pregunta.map((item) => (
-        <GraficoItem id={item.id} titulo={item.titulo} />
+    <Layout >
+      {pregunta.map((item, index) => (
+        <GraficoItem id={item.id} titulo={item.titulo} index={index} key={item.id} />
       ))}
     </Layout>
   )

@@ -13,7 +13,8 @@ const ItemEncuesta = ({encuesta, setActualizar}) => {
     <Card>
       <CardHeader
         title={encuesta.titulo}
-        subheader={encuesta.publicado}
+        subheader={<FechaFormateada fecha={encuesta.publicado}/> }
+        sx={{backgroundColor:colors.teal[300], color: colors.teal[900]}}
       />
 
       <Divider/>
@@ -25,7 +26,7 @@ const ItemEncuesta = ({encuesta, setActualizar}) => {
 
         <Estado estado={encuesta.estado} />
 
-        <Paper elevation={0} variant='outlined' sx={{p: '5px 15px', mt: '16px'}}>
+        <Paper elevation={0} variant='outlined' sx={{p: '5px 15px', mt: '16px', backgroundColor: colors.teal[50]}}>
           <Typography variant='body2'>Preguntas: {encuesta.pregunta.length}</Typography>
           <Typography variant='body2'>Autenticación: {encuesta.auth ? <>{'Requerida'}</>: <>{'Invitado'}</>} </Typography>
         </Paper>
@@ -34,7 +35,7 @@ const ItemEncuesta = ({encuesta, setActualizar}) => {
 
 
       <Divider/>
-      <CardActions sx={{justifyContent:'center'}}>
+      <CardActions sx={{justifyContent:'center', backgroundColor:colors.teal[300] }}>
         <ContenedorAccion estado={encuesta.estado} id={encuesta.id} setActualizar={setActualizar}/>
       </CardActions>
 
@@ -59,6 +60,17 @@ const Estado = ({estado}) => {
         {estado ? tx_Pub : tx_Sav}
       </Typography>
     </Box>
+  )
+}
+
+function FechaFormateada({fecha}) {
+  const date = new Date(fecha)
+
+  return (
+    <Typography sx={{color: colors.common.white}}>{date.toLocaleString('es',{month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    })}</Typography>
   )
 }
 

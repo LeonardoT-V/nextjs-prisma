@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton } from '@mui/material'
+import { colors, IconButton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 import { DeleteForever, Upload, Edit, Share, PieChartOutline } from '@mui/icons-material'
@@ -38,14 +38,14 @@ const ContenedorAccion = ({estado, id, setActualizar}) => {
 
 	return (
     <>
-      <IconButton onClick={() => borrarEncuesta(id)}  color='error'> <DeleteForever/> </IconButton>
+      <IconButton onClick={() => borrarEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.red[300],color: colors.red[900], transition:'.3s all'}}}  > <DeleteForever/> </IconButton>
       { estado
       ? <>
-        <IconButton onClick={() => resultadosEncuesta(id)} color='warning'> <PieChartOutline/> </IconButton>
-        <IconButton onClick={() => compartirEnlace(id)} > <Share/> </IconButton>
+        <IconButton onClick={() => resultadosEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.amber[300],color: colors.amber[900], transition:'.3s all'}}}> <PieChartOutline/> </IconButton>
+        <IconButton onClick={() => compartirEnlace(id)} sx={{'&:hover':{backgroundColor: colors.brown[300],color: colors.brown[900], transition:'.3s all'}}} > <Share/> </IconButton>
       </>
       : <>
-        <IconButton onClick={() => editarEditarEncuesta(id)} color='success'> <Edit/> </IconButton>
+        <IconButton onClick={() => editarEditarEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.green[200],color: colors.green[900], transition:'.3s all'}}}> <Edit/> </IconButton>
         <IconButton onClick={() => publicarEncuesta(id)} color='info'> <Upload/> </IconButton>
       </>}
     </>

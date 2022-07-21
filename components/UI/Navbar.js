@@ -1,4 +1,4 @@
-import { AppBar,MenuItem, Menu, Avatar, Box, Button, Toolbar, Typography } from '@mui/material'
+import { AppBar,MenuItem, Menu, Avatar, Box, Button, Toolbar, Typography, colors } from '@mui/material'
 import { lightBlue } from '@mui/material/colors'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -40,11 +40,11 @@ const Navbar = () => {
   }, [setUserData])
 
   return (
-    <AppBar position='static' color='inherit' elevation={1}>
+    <AppBar position='static' sx={{backgroundColor: colors.blue[300]}} elevation={1}>
       <Toolbar>
         <Box sx={{flexGrow: 1, display: 'flex', height: '100%'}}  >
         <Link href='/'>
-          <Image src={Favicon} height='60px' width='60px' />
+          <Image src={Favicon} height='50px' width='60px' />
         </Link>
         </Box>
 
