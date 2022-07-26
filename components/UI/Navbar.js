@@ -77,7 +77,7 @@ const Navbar = () => {
         :
         <Box>
           <Link href='/login'>
-            <Button variant='text' sx={{mr: 2}}>Login</Button>
+            <Button variant='outlined' sx={{mr: 2, backgroundColor: 'white'}}>Login</Button>
           </Link>
           <Link href='/registro'>
             <Button variant='contained'>Registro</Button>
