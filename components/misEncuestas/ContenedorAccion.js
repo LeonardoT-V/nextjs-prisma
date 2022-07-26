@@ -46,7 +46,7 @@ const ContenedorAccion = ({estado, id, setActualizar}) => {
       </>
       : <>
         <IconButton onClick={() => editarEditarEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.green[200],color: colors.green[900], transition:'.3s all'}}}> <Edit/> </IconButton>
-        <IconButton onClick={() => publicarEncuesta(id)} color='info'> <Upload/> </IconButton>
+        <IconButton onClick={() => publicarEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.blue[200],color: colors.blue[900], transition:'.3s all'}}}> <Upload/> </IconButton>
       </>}
     </>
   )
