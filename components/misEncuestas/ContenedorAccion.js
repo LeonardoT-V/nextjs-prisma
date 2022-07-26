@@ -38,11 +38,11 @@ const ContenedorAccion = ({estado, id, setActualizar}) => {
 
 	return (
     <>
-      <IconButton onClick={() => borrarEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.red[300],color: colors.red[900], transition:'.3s all'}}}  > <DeleteForever/> </IconButton>
+      <IconButton onClick={() => borrarEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.red[200],color: colors.red[900], transition:'.3s all'}}}  > <DeleteForever/> </IconButton>
       { estado
       ? <>
-        <IconButton onClick={() => resultadosEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.amber[300],color: colors.amber[900], transition:'.3s all'}}}> <PieChartOutline/> </IconButton>
-        <IconButton onClick={() => compartirEnlace(id)} sx={{'&:hover':{backgroundColor: colors.brown[300],color: colors.brown[900], transition:'.3s all'}}} > <Share/> </IconButton>
+        <IconButton onClick={() => resultadosEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.amber[200],color: colors.amber[900], transition:'.3s all'}}}> <PieChartOutline/> </IconButton>
+        <IconButton onClick={() => compartirEnlace(id)} sx={{'&:hover':{backgroundColor: colors.brown[200],color: colors.brown[900], transition:'.3s all'}}} > <Share/> </IconButton>
       </>
       : <>
         <IconButton onClick={() => editarEditarEncuesta(id)} sx={{'&:hover':{backgroundColor: colors.green[200],color: colors.green[900], transition:'.3s all'}}}> <Edit/> </IconButton>
